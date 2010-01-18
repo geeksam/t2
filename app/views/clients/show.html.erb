@@ -1,0 +1,8 @@
+<h1>Showing client</h1>
+
+<%= show_field 'Name',   @client.name %>
+<%= show_field 'Active', yesno(@client.active) %>
+
+<br />
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

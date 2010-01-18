@@ -32,4 +32,18 @@ class TimeBlock < ActiveRecord::Base
     self.start_time ||= now
   end
 
+  def task_name
+    task.try(:name)
+  end
+
+  def end_time_or_now
+    self.end_time || now
+  end
+
+  def elapsed_time
+    returning (end_time_or_now - start_time) / 1.hour do |elapsed|
+      raise [end_time_or_now.to_s, start_time.to_s].inspect if elapsed > 10
+    end
+  end
+
 end

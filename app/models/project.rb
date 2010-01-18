@@ -5,7 +5,7 @@
 #  id         :integer         not null, primary key
 #  name       :string(255)
 #  client_id  :integer
-#  active     :boolean
+#  active     :boolean         default(TRUE)
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -33,5 +33,9 @@ class Project < ActiveRecord::Base
   # def tasks_most_recent_first
   #   tasks.sort_by {|e| e.time_blocks.first }.reverse
   # end
+
+  def client_name
+    client.try(:name)
+  end
   
 end

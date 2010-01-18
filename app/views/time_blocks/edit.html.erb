@@ -1,0 +1,14 @@
+<h1>Editing time_block</h1>
+
+<% form_for(@time_block) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'form', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @time_block %> |
+<%= link_to 'Back', time_blocks_path %>

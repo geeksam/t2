@@ -30,4 +30,8 @@ class Task < ActiveRecord::Base
     self.active = true
   end
 
+  def project_name
+    project.try(:name)
+  end
+
 end

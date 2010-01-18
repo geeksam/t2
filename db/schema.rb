@@ -13,7 +13,7 @@ ActiveRecord::Schema.define(:version => 20100118212024) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
-    t.boolean  "active"
+    t.boolean  "active",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100118212024) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.integer  "client_id"
-    t.boolean  "active"
+    t.boolean  "active",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

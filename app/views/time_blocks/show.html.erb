@@ -1,0 +1,10 @@
+<%= show_field 'Task',        dash_if_blank(@time_block.task_name) %>
+<%= show_field 'Date',        dash_if_blank(@time_block.date) %>
+<%= show_field 'Start Time',  short_time(@time_block.start_time) %>
+<%= show_field 'End Time',    short_time(@time_block.end_time) %>
+<%= show_field 'Elapsed',     dash_if_blank(@time_block.elapsed_time) %>
+<%= show_field 'Notes',       dash_if_blank(@time_block.notes) %>
+
+<br />
+<%= link_to 'Edit', edit_time_block_path(@time_block) %> |
+<%= link_to 'Back', time_blocks_path %>

@@ -5,7 +5,7 @@
 #  id         :integer         not null, primary key
 #  name       :string(255)
 #  client_id  :integer
-#  active     :boolean
+#  active     :boolean         default(TRUE)
 #  created_at :datetime
 #  updated_at :datetime
 #

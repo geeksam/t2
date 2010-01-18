@@ -7,6 +7,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => 'users'
   map.resource :user_session
 
+  map.resources :clients
+  map.resources :projects
+  map.resources :tasks
+  map.resources :time_blocks
+
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action

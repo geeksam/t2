@@ -1,0 +1,9 @@
+<h1>Showing project</h1>
+
+<%= show_field 'Client', @project.client_name %>
+<%= show_field 'Name',   @project.name %>
+<%= show_field 'Active', yesno(@project.active) %>
+
+<br />
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

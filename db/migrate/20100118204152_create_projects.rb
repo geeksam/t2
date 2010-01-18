@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :name
       t.integer :client_id
-      t.boolean :active
+      t.boolean :active, :default => true
 
       t.timestamps
     end
