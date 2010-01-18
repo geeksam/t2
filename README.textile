@@ -17,3 +17,7 @@ That being said, if you're taking a look at this, feel free to contact me.  I've
 
 Cheers,
 -Sam
+
+h1. Dependencies
+
+Rails 2.3.5 appears to depend specifically on Rack 1.0.1 (though this does not appear to be declared in their gemspec).
