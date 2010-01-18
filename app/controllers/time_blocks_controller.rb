@@ -1,4 +1,13 @@
 class TimeBlocksController < ApplicationController
+  before_filter :parse_times_with_chronic, :only => [:create, :update]
+
+  def parse_times_with_chronic
+    h = params[:time_block]
+    h[:start_time] = Chronic.parse(h[:start_time]) if h[:start_time].present?
+    h[:end_time  ] = Chronic.parse(h[:end_time])   if h[:end_time].present?
+    true
+  end
+
   # GET /time_blocks
   # GET /time_blocks.xml
   def index
