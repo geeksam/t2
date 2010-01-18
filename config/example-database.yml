@@ -1,0 +1,17 @@
+common: &common
+  adapter: postgresql
+  username: some_user
+  password: some_pass
+  encoding: UTF8
+
+production:
+  database: timr2_dev
+  <<: *common
+
+development:
+  database: timr2_dev
+  <<: *common
+
+test:
+  database: timr2_test
+  <<: *common
