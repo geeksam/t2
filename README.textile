@@ -1,0 +1,19 @@
+h1. What Is This?
+
+This is Timr 2, aka t2.  Timr 1 was a time-tracking app I hacked together in August and September 2007.  I had just started working for a shop that used Hobo (hobocentral.net), so I wrote Timr in Hobo as a learning exercise.
+
+Since then, I've parted ways with Hobo.  And, more importantly, I've switched computers... and forgotten whatever horrible things I had to do to my old computer in order to get my Hobo 0.5.something app to work.
+
+Anyway, I've wanted to dump Hobo for quite a while, and since there _still_ aren't any time tracking apps on the market that work the way I want them to, I'm updating Timr.
+
+h1. Caveat Emptor
+
+*_This is my own personal project, and by definition, it's not paying work._*  I wrote it for me.  I run it on my own development laptop, with one user (guess who).  There may or may not be tests, specs, <a href="http://www.ruby-forum.com/topic/185067">Yoda</a> utterances, or whatever the DSL-happy kids are calling them nowadays.  The code is almost certainly uncommented.  Once I scratch whatever itch I'm feeling at a particular point in time, I tend to ignore this code for months at a stretch.  You're welcome to look at it, but:
+
+# You're on your own.
+# Don't assume that all my code looks like this!
+
+That being said, if you're taking a look at this, feel free to contact me.  I've taken the extra steps of putting this on Github (and writing this readme) on the [very] outside chance that someone else might someday find it interesting.
+
+Cheers,
+-Sam
