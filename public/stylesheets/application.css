@@ -121,3 +121,38 @@ body {
   font-size: 12px;
   text-align: right;
 }
+
+#user_nav a {
+  font-weight: bold;
+}
+
+td {
+  vertical-align: top;
+}
+
+#app_title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+#app_title a {
+  color: #4C4D9A;
+  text-decoration: none;
+}
+
+#header {
+  padding: 1ex;
+  border: 1px solid #4C4D9A;
+}
+
+#page_content {
+  padding: 1ex;
+  margin: 1px; /* matches the 1px border on #header */
+}
+
+#current_user_info {
+  margin-bottom: 1ex;
+}
+
+#nav_links {
+}

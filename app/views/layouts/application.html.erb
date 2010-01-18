@@ -2,27 +2,42 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= h(yield(:title) || "Untitled") %></title>
+    <title><%= h(yield(:title) || 'Timr 2') %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container">
-      <div id="user_nav">
-        <% if current_user %>
-          You are logged in as: <%= [current_user.display_name, current_user.login].reject(&:blank?).first %>
-          <br />
-          <%= link_to 'Log Out', logout_path %>
-        <% else %>
-          <%= link_to 'Log In', login_path %>
-        <% end %>
+      <div id="header">
+        <div id="user_nav">
+          <div id="current_user_info">
+            <% if current_user %>
+              You are logged in as: <%= [current_user.display_name, current_user.login].reject(&:blank?).first %>
+              | <%= link_to 'Log Out', logout_path %>
+            <% else %>
+              <%= link_to 'Log In', login_path %>
+            <% end %>
+          </div>
+          <div id="nav_links">
+            <% if current_user %>
+              View:
+              <%= link_to 'Clients', clients_path %> |
+              <%= link_to 'Projects', projects_path %> |
+              <%= link_to 'Tasks', tasks_path %> |
+              <%= link_to 'Time Blocks', time_blocks_path %>
+            <% end %>
+          </div>
+        </div>
+        <div id="app_title"><%= link_to 'Timr 2', '/' %></div>
       </div>
       
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
       
-      <%= yield %>
+      <div id="page_content">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
