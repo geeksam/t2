@@ -119,4 +119,5 @@ body {
 #user_nav {
   float: right;
   font-size: 12px;
+  text-align: right;
 }
