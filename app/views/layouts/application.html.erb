@@ -36,7 +36,9 @@
       <%- end -%>
       
       <div id="page_content">
-        <%= yield %>
+        <div id="sidebar"><%= yield :sidebar %></div>
+        <div id="main_content"><%= yield %></div>
+        <%= clearer %>
       </div>
     </div>
   </body>

@@ -20,4 +20,8 @@ module ApplicationHelper
     '%s <strong>%s</strong><br />' % [label, contents]
   end
 
+  def clearer(contents = nil)
+    content_tag(:div, contents, :class => 'clear')
+  end
+
 end

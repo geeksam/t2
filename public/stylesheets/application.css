@@ -17,10 +17,10 @@ body {
 }
 
 #container {
-  width: 75%;
+  width: 800px;
   margin: 0 auto;
   background-color: #FFF;
-  padding: 20px 40px;
+  padding: 20px;
   border: solid 1px black;
   margin-top: 20px;
 }
@@ -146,8 +146,9 @@ td {
 }
 
 #page_content {
-  padding: 1ex;
-  margin: 1px; /* matches the 1px border on #header */
+  margin-top: 1ex;
+  border: 1px solid #4C4D9A;
+  width: 800px;
 }
 
 #current_user_info {
@@ -155,4 +156,25 @@ td {
 }
 
 #nav_links {
+}
+
+#sidebar {
+  float: right;
+  width: 200px;
+/*  background-color: #ccc;*/
+}
+
+#main_content {
+  width: 590px;
+/*  background-color: #fff;*/
+}
+
+.panel {
+  margin: 0 0 1ex 0 !important;
+  padding: 0 1ex;
+  border: 1px solid #ccc;
+}
+
+.panel h2 {
+  font-size: 16px;
 }
