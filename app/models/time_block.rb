@@ -24,6 +24,8 @@ class TimeBlock < ActiveRecord::Base
               lambda { |date|
                 { :conditions => ['time_blocks.date=?', date] }
               }
+  named_scope :current,
+              :conditions => ['end_time IS NULL']
   #
   
   before_create :default_to_now
