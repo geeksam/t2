@@ -162,11 +162,14 @@ td {
 #sidebar {
   float: right;
   width: 200px;
+  margin-right: 10px;
+  margin-top: 8px;
 /*  background-color: #ccc;*/
 }
 
 #main_content {
-  width: 590px;
+  padding: 8px;
+  width: 575px;
 /*  background-color: #fff;*/
 }
 
