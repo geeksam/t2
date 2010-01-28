@@ -1,0 +1,37 @@
+- panel 'currently_working_on' do
+  %h2 Currently Working On
+  - current_tb = TimeBlock.current.first
+  - if current_tb.blank?
+    Nothing at the moment...
+  - else
+    Something!
+
+- panel 'active_tasks' do
+  %h2 Active Tasks
+  - Task.active.group_by(&:project).sort_by { |a| a.first.name }.each do |project, tasks|
+    %h3=project.name
+    %ul
+      - tasks.each do |task|
+        %li= task.name
+
+- panel 'bulk_task_entry' do
+  %h2 Bulk Task Entry
+
+
+
+- content_for :sidebar do
+  - panel 'time_summary' do
+    %h2 Hours Today: [todo]
+    - if false && client
+      %h2== ONLY FOR: #{client.name}
+    .time_summary== This week: <strong>#{"[todo]"}</strong>
+    %br
+    - if false
+      / = time_summary 'This month', '[todo]'
+      / = time_summary 'Last month', '[todo]'
+      / = time_summary 'Last month:', time_summaries[:last_month]
+      / = time_summary 'Two months ago:', time_summaries[:two_months_ago]
+      / = time_summary 'Three months ago:', time_summaries[:three_months_ago]
+
+  - panel 'todays_time_blocks' do
+    %h2 Today's Time Blocks

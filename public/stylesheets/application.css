@@ -171,10 +171,24 @@ td {
 
 .panel {
   margin: 0 0 1ex 0 !important;
-  padding: 0 1ex;
+  padding: 1ex;
+  padding-top: 0;
   border: 1px solid #ccc;
 }
 
 .panel h2 {
   font-size: 16px;
 }
+
+.time_summary {
+  margin: 0;
+}
+
+.time_summary .label {
+  font-style: italic;
+}
+
+.time_summary .value {
+  font-weight: bold;
+}
+
