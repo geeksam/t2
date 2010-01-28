@@ -34,4 +34,12 @@ class Task < ActiveRecord::Base
     project.try(:name)
   end
 
+  def display_name
+    returning "" do |s|
+      s << name[0..50]
+      s << '...' if name.length > 50
+      s << " (#{project.name})" if project
+    end
+  end
+
 end

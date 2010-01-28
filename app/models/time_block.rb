@@ -15,11 +15,11 @@
 class TimeBlock < ActiveRecord::Base
 
   belongs_to :task
-  
+
   default_scope :order => 'date desc, start_time desc, end_time desc'
 
   validates_presence_of :task
-  
+
   named_scope :on_date,
               lambda { |date|
                 { :conditions => ['time_blocks.date=?', date] }
@@ -27,25 +27,54 @@ class TimeBlock < ActiveRecord::Base
   named_scope :current,
               :conditions => ['end_time IS NULL']
   #
-  
+
   before_create :default_to_now
   def default_to_now
     self.date       ||= Date.today
-    self.start_time ||= now
+    self.start_time ||= TIME_CLASS.now
   end
 
   def task_name
     task.try(:name)
   end
 
+
   def end_time_or_now
-    self.end_time || now
+    end_time || TIME_CLASS.now
   end
 
   def elapsed_time
-    returning (end_time_or_now - start_time) / 1.hour do |elapsed|
-      raise [end_time_or_now.to_s, start_time.to_s].inspect if elapsed > 10
+    seconds = end_time_or_now - start_time
+    if seconds > 10.hours # hours, that is
+      raise ['end time -->', end_time_or_now.to_s, 'start time -->', start_time.to_s].inspect
     end
+    return seconds / 1.hour
+  end
+  alias :hours :elapsed_time
+
+
+  # Have experienced some difficulty getting times to match up between
+  # Time and Time.zone.  Thus, I'm explicitly using Time -- as I run
+  # this app locally, I don't need the bother.
+  TIME_CLASS = Time
+
+  def start_time
+    reparse_time(read_attribute(:start_time))
+  end
+  def start_time=(time)
+    write_attribute :start_time, reparse_time(time)
+  end
+  def end_time
+    reparse_time(read_attribute(:end_time))
+  end
+  def end_time=(time)
+    write_attribute :end_time, reparse_time(time)
+  end
+
+  protected
+  def reparse_time(time)
+    return if time.nil?
+    TIME_CLASS.parse(time.strftime('%H:%M:%S'))
   end
 
 end

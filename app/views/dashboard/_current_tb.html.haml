@@ -1,0 +1,18 @@
+- form_for(current_tb) do |f|
+  = hidden_field_tag :redirect_on_success, '/'
+
+  %div
+    %label Start
+    = f.text_field :start_time
+    %span.elapsed= '(Elapsed: %.2fh)' % current_tb.elapsed_time
+
+  %div
+    %label Task
+    = f.select :task_id, Task.active.sort_by_name.map {|t| [t.display_name, t.id]}
+
+  %div
+    %label Notes
+    = f.text_area :notes, :size => '50x3'
+  
+  %div
+    = submit_tag 'Update'

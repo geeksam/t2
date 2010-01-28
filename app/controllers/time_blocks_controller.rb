@@ -71,7 +71,9 @@ class TimeBlocksController < ApplicationController
     respond_to do |format|
       if @time_block.update_attributes(params[:time_block])
         flash[:notice] = 'TimeBlock was successfully updated.'
-        format.html { redirect_to(@time_block) }
+        format.html {
+          redirect_to [params[:redirect_on_success], @time_block].reject(&:blank?).first
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

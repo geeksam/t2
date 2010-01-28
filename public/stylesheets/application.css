@@ -196,3 +196,16 @@ td {
   font-weight: bold;
 }
 
+form div {
+  clear: left;
+}
+
+form div label {
+  float: left;
+  width: 8em;
+}
+
+.elapsed {
+  font-size: smaller;
+}
+
