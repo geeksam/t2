@@ -1,0 +1,15 @@
+%h1 Listing projects
+
+%table
+  %tr
+    %th Client
+    %th Name
+    %th Active
+  - @projects.each do |project|
+    %tr
+      %td= link_to project.client_name, project.client if project.client
+      %td= link_to project.name, edit_project_path(project)
+      %td= yesno project.active
+
+%br
+= link_to 'New project', new_project_path
