@@ -32,4 +32,8 @@ module ApplicationHelper
     content_tag(:div, contents, :class => 'time_summary')
   end
 
+  def logged_in_as
+    [current_user.display_name, current_user.login].reject(&:blank?).first
+  end
+
 end
