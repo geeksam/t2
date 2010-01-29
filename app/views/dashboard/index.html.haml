@@ -13,13 +13,12 @@
       %h3=project.name
       - exp.less {}
       - exp.more do
-        %ul
+        %ul.tasks
           - tasks.each do |task|
             %li=  task.name + ' ' + link_to_remote('Clock in', :url => clock_in_task_path(task), :method => 'post')
 
 - panel 'bulk_task_entry' do
   %h2 Bulk Task Entry
-
 
 
 - content_for :sidebar do
@@ -37,3 +36,15 @@
 
   - panel 'todays_time_blocks' do
     %h2 Today's Time Blocks
+    %table
+      %tr
+        %th Task
+        %th Start
+        %th End
+        %th Elapsed
+      - TimeBlock.today.each do |tb|
+        %tr
+          %td=tb.task_name
+          %td=tb.start_time.try(:strftime, '%H:%M')
+          %td=tb.end_time  .try(:strftime, '%H:%M')
+          %td{ :align => 'right' }=link_to('%.2f' % tb.elapsed_time, edit_time_block_path(tb))
