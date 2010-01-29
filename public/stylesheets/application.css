@@ -17,7 +17,6 @@ body {
 }
 
 #container {
-  width: 800px;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px;
@@ -43,39 +42,6 @@ body {
 
 .clear {
   clear: both;
-}
-
-
-#articles h2 {
-  font-size: 16px;
-  margin-bottom: 2px;
-}
-
-#articles h2 .comments {
-  font-size: 12px;
-  font-weight: normal;
-}
-
-#articles .author {
-  font-style: italic;
-  color: #333;
-}
-
-#comments {
-  font-size: 12px;
-  background-color: #DDD;
-  padding: 0 20px;
-  width: 325px;
-  border: solid 1px #333;
-}
-
-.comment {
-  border-bottom: solid 1px #999;
-  margin: 15px 0;
-}
-
-.comment .author_name {
-  font-weight: bold;
 }
 
 .fieldWithErrors {
@@ -149,7 +115,7 @@ td {
 #page_content {
   margin-top: 1ex;
   border: 1px solid #4C4D9A;
-  width: 800px;
+  min-width: 800px;
 }
 
 #current_user_info {
@@ -161,7 +127,9 @@ td {
 
 #sidebar {
   float: right;
-  width: 200px;
+  min-width: 200px;
+  width: 30%;
+
   margin-right: 10px;
   margin-top: 8px;
 /*  background-color: #ccc;*/
@@ -169,7 +137,8 @@ td {
 
 #main_content {
   padding: 8px;
-  width: 575px;
+  min-width: 565px;
+  width: 67%;
 /*  background-color: #fff;*/
 }
 
@@ -211,5 +180,20 @@ form div label {
 
 .elapsed {
   font-size: smaller;
+}
+
+ul.tasks {
+}
+
+.expandable_control_links {
+  font-size: 11px;
+}
+
+#todays_time_blocks th {
+  text-align: left;
+}
+
+#todays_time_blocks table {
+  font-size: 10px;
 }
 

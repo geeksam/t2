@@ -41,7 +41,7 @@ module ExpandableHelper
     def before_html
       less_link = link_to_function('less', "expandable_show_less('#{id}');", :id => "#{id}_less_link", :style => ('display: none;' if  collapsed))
       more_link = link_to_function('more', "expandable_show_more('#{id}');", :id => "#{id}_more_link", :style => ('display: none;' if !collapsed))
-      both_links = %Q{[#{more_link}#{less_link}]}
+      both_links = %Q{<span class="expandable_control_links">[#{more_link}#{less_link}]</span>}
       returning '' do |s|
         s << both_links if float_link.blank?
         s << %Q{<div id="#{id}">}
