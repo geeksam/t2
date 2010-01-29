@@ -7,11 +7,15 @@
 
 - panel 'active_tasks' do
   %h2 Active Tasks
-  - Task.active.group_by(&:project).sort_by { |a| a.first.name }.each do |project, tasks|
-    %h3=project.name
-    %ul
-      - tasks.each do |task|
-        %li= task.name
+  - Task.active_list_by_project.each do |project, tasks|
+    - is_current = tasks.include?(@current_tb.task)
+    - expandable("project_#{project.id}", :float_link => 'right', :collapsed => !is_current) do |exp|
+      %h3=project.name
+      - exp.less {}
+      - exp.more do
+        %ul
+          - tasks.each do |task|
+            %li=  task.name + ' ' + link_to_remote('Clock in', :url => clock_in_task_path(task), :method => 'post')
 
 - panel 'bulk_task_entry' do
   %h2 Bulk Task Entry
@@ -26,8 +30,7 @@
     .time_summary== This week: <strong>#{"[todo]"}</strong>
     %br
     - if false
-      / = time_summary 'This month', '[todo]'
-      / = time_summary 'Last month', '[todo]'
+      / = time_summary 'This month',  time_summaries[:this_month]
       / = time_summary 'Last month:', time_summaries[:last_month]
       / = time_summary 'Two months ago:', time_summaries[:two_months_ago]
       / = time_summary 'Three months ago:', time_summaries[:three_months_ago]

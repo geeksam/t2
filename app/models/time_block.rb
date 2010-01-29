@@ -53,6 +53,12 @@ class TimeBlock < ActiveRecord::Base
   alias :hours :elapsed_time
 
 
+  def stop_clock!
+    self.end_time = TIME_CLASS.now
+    save
+  end
+
+
   # Have experienced some difficulty getting times to match up between
   # Time and Time.zone.  Thus, I'm explicitly using Time -- as I run
   # this app locally, I don't need the bother.

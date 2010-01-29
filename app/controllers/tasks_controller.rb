@@ -1,4 +1,16 @@
 class TasksController < ApplicationController
+
+  def clock_in
+    @task = Task.find(params[:id])
+    @task.clock_in!
+    respond_to do |wants|
+      wants.html { redirect_to '/' }
+      wants.js { render(:update) { |page| page.redirect_to('/') } }
+    end
+  end
+
+
+
   # GET /tasks
   # GET /tasks.xml
   def index

@@ -7,6 +7,9 @@ class TimeBlocksController < ApplicationController
     h[:end_time  ] = Chronic.parse(h[:end_time])   if h[:end_time].present?
     true
   end
+  protected :parse_times_with_chronic
+
+
 
   # GET /time_blocks
   # GET /time_blocks.xml

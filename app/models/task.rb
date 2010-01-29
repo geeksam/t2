@@ -25,6 +25,10 @@ class Task < ActiveRecord::Base
   named_scope :sort_by_name,
               :order => 'tasks.name'
 
+  def self.active_list_by_project
+    active.group_by(&:project).sort_by { |a| a.first.name }
+  end
+
   before_create :make_active
   def make_active
     self.active = true
@@ -40,6 +44,28 @@ class Task < ActiveRecord::Base
       s << '...' if name.length > 50
       s << " (#{project.name})" if project
     end
+  end
+
+  def current_tb
+    TimeBlock.current.first
+  end
+
+  def clock_in!
+    tb = current_tb
+    unless tb.nil?
+      tb.end_time = Time.now
+      tb.save
+    end
+    TimeBlock.create(:task => self)
+  end
+
+  def clock_out!
+    return unless is_current?  #temp: consider raising an error?
+    current_tb.stop_clock!
+  end
+
+  def is_current?
+    self == current_tb.task
   end
 
 end

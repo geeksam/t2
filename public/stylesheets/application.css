@@ -184,6 +184,10 @@ td {
   font-size: 16px;
 }
 
+.panel h3 {
+  font-size: 13px;
+}
+
 .time_summary {
   margin: 0;
 }
