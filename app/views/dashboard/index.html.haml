@@ -25,22 +25,20 @@
                 - else
                   = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
 
-- panel 'bulk_task_entry' do
-  %h2 Bulk Task Entry
+
+/*********************************************************************************************/
 
 
 - content_for :sidebar do
   - panel 'time_summary' do
-    %h2= 'Hours Today: ' + elapsed(@todays_tbs.sum(&:elapsed_time))
-    - if false && client
-      %h2== ONLY FOR: #{client.name}
-    .time_summary== This week: <strong>#{"[todo]"}</strong>
-    %br
-    - if false
-      / = time_summary 'This month',  time_summaries[:this_month]
-      / = time_summary 'Last month:', time_summaries[:last_month]
-      / = time_summary 'Two months ago:', time_summaries[:two_months_ago]
-      / = time_summary 'Three months ago:', time_summaries[:three_months_ago]
+    %h2= 'Hours Today: ' + elapsed(@time_summaries[:today].last)
+    - if false && @client
+      %h2== ONLY FOR: #{@client.name}
+    = time_summary 'This week',       @time_summaries[:this_week]
+    = time_summary 'This pay period', @time_summaries[:this_pp]
+    = time_summary 'Last pay period', @time_summaries[:last_pp]
+    = time_summary 'Two PPs ago',     @time_summaries[:last_pp_but_1]
+    = time_summary 'Three PPs ago',   @time_summaries[:last_pp_but_2]
 
   - panel 'todays_time_blocks' do
     %h2 Today's Time Blocks

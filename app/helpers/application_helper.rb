@@ -24,10 +24,10 @@ module ApplicationHelper
     content_tag(:div, contents, :class => 'clear')
   end
 
-  def time_summary(label, value)
-    if value.kind_of?(Fixnum)
-      value = '%.2f' % value
-    end
+  def time_summary(label, pair)
+    period, value = *pair
+    label = period.to_s if period.kind_of?(PayPeriod)
+    value = elapsed(value) if value.kind_of?(Numeric)
     contents = '<span class="label">%s: <span class="value">%s</span>' % [label, value]
     content_tag(:div, contents, :class => 'time_summary')
   end

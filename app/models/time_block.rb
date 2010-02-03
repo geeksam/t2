@@ -20,9 +20,17 @@ class TimeBlock < ActiveRecord::Base
 
   validates_presence_of :task
 
-  named_scope :on_date,
+  named_scope :for_day,
               lambda { |date|
                 { :conditions => ['time_blocks.date=?', date] }
+              }
+  named_scope :for_week,
+              lambda { |date|
+                { :conditions => ['time_blocks.date BETWEEN ? AND ?', date.beginning_of_week, date.end_of_week] }
+              }
+  named_scope :for_pay_period,
+              lambda { |pp|
+                { :conditions => ['time_blocks.date BETWEEN ? AND ?'] + pp.boundaries }
               }
   named_scope :today,
               :conditions => ['time_blocks.date=?', Date.today]
@@ -31,6 +39,13 @@ class TimeBlock < ActiveRecord::Base
   named_scope :for_task,
               lambda { |task|
                 { :conditions => ['time_blocks.task_id=?', task.to_param] }
+              }
+  named_scope :for_client,
+              lambda { |client|
+                {
+                  :include    => [:task],
+                  :conditions => ['tasks.client_id=?', client_id.to_param]
+                }
               }
   #
 
