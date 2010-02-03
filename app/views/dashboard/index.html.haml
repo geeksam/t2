@@ -23,7 +23,7 @@
 
 - content_for :sidebar do
   - panel 'time_summary' do
-    %h2 Hours Today: [todo]
+    %h2= 'Hours Today: ' + elapsed(@todays_tbs.sum(&:elapsed_time))
     - if false && client
       %h2== ONLY FOR: #{client.name}
     .time_summary== This week: <strong>#{"[todo]"}</strong>

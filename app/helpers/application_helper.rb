@@ -36,4 +36,10 @@ module ApplicationHelper
     [current_user.display_name, current_user.login].reject(&:blank?).first
   end
 
+  def elapsed(time)
+    s = ('%.2f' % time).gsub(/0+$/, '').gsub(/\.$/, '')
+    s = 'zero' if s == '0'
+    s
+  end
+
 end
