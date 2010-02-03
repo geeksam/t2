@@ -8,6 +8,7 @@
 #  active     :boolean         default(TRUE)
 #  created_at :datetime
 #  updated_at :datetime
+#  short_name :string(255)
 #
 
 require 'test_helper'

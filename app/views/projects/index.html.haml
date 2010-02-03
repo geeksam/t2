@@ -4,11 +4,13 @@
   %tr
     %th Client
     %th Name
+    %th Short Name
     %th Active
   - @projects.each do |project|
     %tr
       %td= link_to project.client_name, project.client if project.client
       %td= link_to project.name, project
+      %td= project.short_name
       %td= yesno project.active
 
 %br

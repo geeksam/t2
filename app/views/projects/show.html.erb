@@ -1,8 +1,9 @@
 <h1>Showing project</h1>
 
-<%= show_field 'Client', link_to(@project.client_name, @project.client) %>
-<%= show_field 'Name',   @project.name %>
-<%= show_field 'Active', yesno(@project.active) %>
+<%= show_field 'Client',      link_to(@project.client_name, @project.client) %>
+<%= show_field 'Name',        @project.name %>
+<%= show_field 'Short Name',  @project.short_name %>
+<%= show_field 'Active',      yesno(@project.active) %>
 
 <br />
 <%= link_to 'All Projects', projects_path %> |

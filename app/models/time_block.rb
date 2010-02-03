@@ -58,6 +58,9 @@ class TimeBlock < ActiveRecord::Base
   def task_name
     task.try(:name)
   end
+  def proj_name
+    task.try(:project).try(:short_name)
+  end
 
 
   def end_time_or_now

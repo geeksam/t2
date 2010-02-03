@@ -44,13 +44,15 @@
     %h2 Today's Time Blocks
     %table
       %tr
-        %th Task
+        %th
         %th Start
         %th End
-        %th Elapsed
+        %th Proj.
+        %th Task
       - TimeBlock.today.each do |tb|
         %tr
-          %td=tb.task_name
+          %td{ :align => 'right' }=link_to(elapsed(tb.elapsed_time), edit_time_block_path(tb))
           %td=tb.start_time.try(:strftime, '%H:%M')
           %td=tb.end_time  .try(:strftime, '%H:%M')
-          %td{ :align => 'right' }=link_to(elapsed(tb.elapsed_time), edit_time_block_path(tb))
+          %td=tb.proj_name
+          %td=truncate(tb.task_name, 25)

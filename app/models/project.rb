@@ -8,6 +8,7 @@
 #  active     :boolean         default(TRUE)
 #  created_at :datetime
 #  updated_at :datetime
+#  short_name :string(255)
 #
 
 class Project < ActiveRecord::Base
@@ -41,6 +42,10 @@ class Project < ActiveRecord::Base
 
   def client_name
     client.try(:name)
+  end
+
+  def short_name
+    read_attribute(:short_name) || read_attribute(:name)
   end
   
 end

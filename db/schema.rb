@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100118212024) do
+ActiveRecord::Schema.define(:version => 20100203225600) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20100118212024) do
     t.boolean  "active",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "short_name"
   end
 
   create_table "tasks", :force => true do |t|

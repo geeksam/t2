@@ -7,5 +7,9 @@
   = f.text_field :name
 
 %div
+  %label{ :for => 'short_name' } Short Name
+  = f.text_field :short_name
+
+%div
   %label{ :for => 'project_active' } Active
   = f.check_box :active
