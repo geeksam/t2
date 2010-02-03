@@ -24,9 +24,25 @@ class Task < ActiveRecord::Base
               :conditions => ['tasks.active']
   named_scope :sort_by_name,
               :order => 'tasks.name'
+  named_scope :for_project,
+              lambda { |project|
+                { :conditions => ['tasks.project_id=?', project.to_param] }
+              }
+  #
 
   def self.active_list_by_project
     active.group_by(&:project).sort_by { |a| a.first.name }
+  end
+
+  def self.current_tb
+    TimeBlock.current.first
+  end
+  def current_tb
+    self.class.current_tb
+  end
+
+  def self.find_current
+    current_tb.try(:task)
   end
 
   before_create :make_active
@@ -46,10 +62,6 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def current_tb
-    TimeBlock.current.first
-  end
-
   def clock_in!
     tb = current_tb
     unless tb.nil?
@@ -65,7 +77,7 @@ class Task < ActiveRecord::Base
   end
 
   def is_current?
-    self == current_tb.task
+    self == current_tb.try(:task)
   end
 
 end

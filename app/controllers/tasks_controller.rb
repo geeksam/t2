@@ -1,8 +1,15 @@
 class TasksController < ApplicationController
 
   def clock_in
-    @task = Task.find(params[:id])
-    @task.clock_in!
+    Task.find(params[:id]).try :clock_in!
+    respond_to do |wants|
+      wants.html { redirect_to '/' }
+      wants.js { render(:update) { |page| page.redirect_to('/') } }
+    end
+  end
+
+  def clock_out
+    Task.find_current.try :clock_out!
     respond_to do |wants|
       wants.html { redirect_to '/' }
       wants.js { render(:update) { |page| page.redirect_to('/') } }

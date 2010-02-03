@@ -36,6 +36,11 @@ module ApplicationHelper
     [current_user.display_name, current_user.login].reject(&:blank?).first
   end
 
+  def bracket_link(link, *classes)
+    classes = (%w[bracket_link] + classes).join(' ')
+    %Q{<span class="#{ classes }">[%s]</span>} % link
+  end
+
   def elapsed(time)
     s = ('%.2f' % time).gsub(/0+$/, '').gsub(/\.$/, '')
     s = 'zero' if s == '0'

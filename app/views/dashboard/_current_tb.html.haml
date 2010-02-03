@@ -4,7 +4,7 @@
   %div
     %label Start
     = f.text_field :start_time
-    %span.elapsed= '(Elapsed: %.2fh)' % current_tb.elapsed_time
+    %span.elapsed= "(Elapsed: #{elapsed(current_tb.elapsed_time)})"
 
   %div
     %label Task

@@ -7,13 +7,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => 'users'
   map.resource :user_session
 
-  map.resources :clients
-  map.resources :projects
-  map.resources :tasks, 
+  map.resources :clients, :has_many => [:projects]
+  map.resources :projects, :has_many => [:tasks]
+  map.resources :tasks, :has_many => [:time_blocks],
                 :member => {
                   :clock_in => :post,
                 }
   map.resources :time_blocks
+
+  map.clock_out 'clock_out', :controller => 'tasks', :action => 'clock_out', :method => :post
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

@@ -197,3 +197,22 @@ ul.tasks {
   font-size: 10px;
 }
 
+.bracket_link {
+  font-size: 11px;
+}
+
+.clock_in a {
+/*  color: #4C9A71;*/
+}
+
+.clock_out a {
+  color: #4D9A4C;
+  font-weight: bold;
+}
+
+a.subtle {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px dotted #984C9A;
+}
+

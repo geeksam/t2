@@ -8,14 +8,22 @@
 - panel 'active_tasks' do
   %h2 Active Tasks
   - Task.active_list_by_project.each do |project, tasks|
-    - is_current = tasks.include?(@current_tb.task)
+    - is_current = tasks.include?(@current_task)
     - expandable("project_#{project.id}", :float_link => 'right', :collapsed => !is_current) do |exp|
-      %h3=project.name
+      %h3=link_to(project.name, project, :class => 'subtle')
       - exp.less {}
       - exp.more do
         %ul.tasks
           - tasks.each do |task|
-            %li=  task.name + ' ' + link_to_remote('Clock in', :url => clock_in_task_path(task), :method => 'post')
+            %li
+              = link_to(task.name, task, :class => 'subtle')
+              = ' &nbsp;'
+              = bracket_link link_to('edit', edit_task_path(task))
+              - with_options(:method => :post) do |post|
+                - if task.present? && task.is_current?
+                  = bracket_link post.link_to('Clock out', clock_out_path), 'clock_out'
+                - else
+                  = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
 
 - panel 'bulk_task_entry' do
   %h2 Bulk Task Entry
@@ -47,4 +55,4 @@
           %td=tb.task_name
           %td=tb.start_time.try(:strftime, '%H:%M')
           %td=tb.end_time  .try(:strftime, '%H:%M')
-          %td{ :align => 'right' }=link_to('%.2f' % tb.elapsed_time, edit_time_block_path(tb))
+          %td{ :align => 'right' }=link_to(elapsed(tb.elapsed_time), edit_time_block_path(tb))
