@@ -13,7 +13,7 @@
 <% @tasks.each do |task| %>
   <tr>
     <td><%= link_to task.project_name, task.project %></td>
-    <td><%= link_to task.name, edit_task_path(task) %></td>
+    <td><%= link_to task.name, task %></td>
     <td><%= dash_if_blank task.ticket_no %></td>
     <td><%= yesno task.active %></td>
     <td><%= yesno task.recurring %></td>

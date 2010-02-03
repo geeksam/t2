@@ -3,18 +3,20 @@
 <table>
   <tr>
     <th>Date</th>
-    <th>Elapsed</th>
-    <th>Start Time</th>
     <th>End Time</th>
+    <th>Start Time</th>
+    <th>Elapsed</th>
+    <th>Task</th>
     <th>Notes</th>
   </tr>
 
 <% @time_blocks.each do |time_block| %>
   <tr>
     <td><%= time_block.date %></td>
-    <td><%= link_to time_block.elapsed_time, edit_time_block_path(time_block) %></td>
-    <td align="right"><%= short_time(time_block.start_time) %></td>
     <td align="right"><%= short_time(time_block.end_time) %></td>
+    <td align="right"><%= short_time(time_block.start_time) %></td>
+    <td><%= link_to elapsed(time_block.elapsed_time), time_block %></td>
+    <td><%= link_to time_block.task_name, time_block.task %></td>
     <td><%= dash_if_blank time_block.notes %></td>
   </tr>
 <% end %>

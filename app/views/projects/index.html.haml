@@ -8,7 +8,7 @@
   - @projects.each do |project|
     %tr
       %td= link_to project.client_name, project.client if project.client
-      %td= link_to project.name, edit_project_path(project)
+      %td= link_to project.name, project
       %td= yesno project.active
 
 %br

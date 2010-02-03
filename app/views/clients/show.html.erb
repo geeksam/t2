@@ -4,5 +4,7 @@
 <%= show_field 'Active', yesno(@client.active) %>
 
 <br />
+<%= link_to 'All Clients', clients_path %> |
 <%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to 'Related Projects', client_projects_path(@client) %> |
+<%= link_to 'New Project', new_client_project_path(@client) %>

@@ -1,9 +1,11 @@
 <h1>Showing project</h1>
 
-<%= show_field 'Client', @project.client_name %>
+<%= show_field 'Client', link_to(@project.client_name, @project.client) %>
 <%= show_field 'Name',   @project.name %>
 <%= show_field 'Active', yesno(@project.active) %>
 
 <br />
+<%= link_to 'All Projects', projects_path %> |
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Related Tasks', project_tasks_path(@project) %> |
+<%= link_to 'New Task', new_project_task_path(@project) %>

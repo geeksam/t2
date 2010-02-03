@@ -1,6 +1,6 @@
 <h1>Showing task</h1>
 
-<%= show_field 'Project',   dash_if_blank(@task.project_name) %>
+<%= show_field 'Project',   link_to(@task.project_name, @task.project) %>
 <%= show_field 'Name',      @task.name %>
 <%= show_field 'Ticket #',  dash_if_blank(@task.ticket_no) %>
 <%= show_field 'Active',    yesno(@task.active) %>
@@ -8,5 +8,7 @@
 <%= show_field 'Notes',     dash_if_blank(@task.notes) %>
 
 <br />
+<%= link_to 'All Tasks', tasks_path %> |
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Related Time Blocks', task_time_blocks_path(@task) %> |
+<%= link_to 'New Task', new_task_time_block_path(@task) %>

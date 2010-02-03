@@ -85,7 +85,7 @@ class TimeBlock < ActiveRecord::Base
 
   protected
   def reparse_time(time)
-    return if time.nil?
+    return if time.blank?
     TIME_CLASS.parse(time.strftime('%H:%M:%S'))
   end
 
