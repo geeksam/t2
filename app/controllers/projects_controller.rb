@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.all
+    finder = Project
+    finder = finder.for_client(params[:client_id]) if params[:client_id].present?
+    @projects = finder.all
 
     respond_to do |format|
       format.html # index.html.erb

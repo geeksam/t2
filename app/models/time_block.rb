@@ -28,6 +28,10 @@ class TimeBlock < ActiveRecord::Base
               :conditions => ['time_blocks.date=?', Date.today]
   named_scope :current,
               :conditions => ['end_time IS NULL']
+  named_scope :for_task,
+              lambda { |task|
+                { :conditions => ['time_blocks.task_id=?', task.to_param] }
+              }
   #
 
   before_create :default_to_now

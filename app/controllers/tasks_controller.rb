@@ -21,7 +21,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    @tasks = Task.all
+    finder = Task
+    finder = finder.for_project(params[:project_id]) if params[:project_id].present?
+    @tasks = finder.all
 
     respond_to do |format|
       format.html # index.html.erb

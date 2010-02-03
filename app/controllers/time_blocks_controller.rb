@@ -14,7 +14,9 @@ class TimeBlocksController < ApplicationController
   # GET /time_blocks
   # GET /time_blocks.xml
   def index
-    @time_blocks = TimeBlock.all
+    finder = TimeBlock
+    finder = finder.for_task(params[:task_id]) if params[:task_id].present?
+    @time_blocks = finder.all
 
     respond_to do |format|
       format.html # index.html.erb

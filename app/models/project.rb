@@ -25,6 +25,11 @@ class Project < ActiveRecord::Base
               :conditions => ['tasks.active'],
               :include    => [:tasks],
               :order      => 'projects.name'
+  named_scope :for_client,
+              lambda { |client|
+                { :conditions => ['projects.client_id=?', client.to_param] }
+              }
+  #
 
   # def active_tasks
   #   tasks.select(&:active?).sort_by { |e| e.name.downcase }
