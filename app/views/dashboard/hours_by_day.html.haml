@@ -1,7 +1,10 @@
 %table{ :cellspacing => 0, :class => 'report' }
   - @time_blocks.group_by(&:date).each do |day, tbs|
     %tr
-      %th{ :colspan => 10, :align => 'left', :class => 'section' }=day
+      %th{ :colspan => 10, :align => 'left', :class => 'section' }
+        = day
+        %br
+        = 'Total Hours: ' + elapsed(tbs.sum(&:elapsed_time))
     %tr
       %th Ticket&nbsp;#
       %th Elapsed
