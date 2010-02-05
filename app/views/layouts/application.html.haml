@@ -19,11 +19,17 @@
               = link_to 'Log In', login_path
           #nav_links
             - if current_user
+              %strong Resources:
               - links = []
               - links << link_to('Clients',     clients_path    )
               - links << link_to('Projects',    projects_path   )
               - links << link_to('Tasks',       tasks_path      )
               - links << link_to('Time Blocks', time_blocks_path)
+              = links.join(' | ')
+              %br
+              %strong Reports:
+              - links = []
+              - links << link_to('Hours by Day', hours_by_day_path)
               = links.join(' | ')
         .clear
       

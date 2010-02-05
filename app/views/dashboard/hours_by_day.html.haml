@@ -1,0 +1,19 @@
+%table{ :cellspacing => 0, :class => 'report' }
+  - @time_blocks.group_by(&:date).each do |day, tbs|
+    %tr
+      %th{ :colspan => 10, :align => 'left', :class => 'section' }=day
+    %tr
+      %th Ticket&nbsp;#
+      %th Elapsed
+      %th Task
+    - tbs.group_by(&:task).each do |task, tbs|
+      %tr
+        %td=dash_if_blank task.ticket_no
+        %td=elapsed(tbs.sum(&:elapsed_time))
+        %td
+          =task.name
+          - unless (notes = tbs.map(&:notes).reject(&:blank?)).empty?
+            %ul
+              - notes.each do |note|
+                %li=note
+

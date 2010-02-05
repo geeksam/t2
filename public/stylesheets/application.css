@@ -216,3 +216,15 @@ a.subtle {
   border-bottom: 1px dotted #984C9A;
 }
 
+table.report th.section {
+  padding-top: 1em;
+}
+table.report th {
+  border-bottom: 1px solid #000;
+  padding-right: 1em;
+  text-align: left;
+}
+
+table.report td ul {
+  margin: 0;
+}

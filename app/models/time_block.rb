@@ -32,6 +32,10 @@ class TimeBlock < ActiveRecord::Base
               lambda { |pp|
                 { :conditions => ['time_blocks.date BETWEEN ? AND ?'] + pp.boundaries }
               }
+  named_scope :for_dates,
+              lambda { |start_date, end_date|
+                { :conditions => ['time_blocks.date BETWEEN ? AND ?', start_date, end_date] }
+              }
   named_scope :today,
               :conditions => ['time_blocks.date=?', Date.today]
   named_scope :current,
@@ -40,11 +44,18 @@ class TimeBlock < ActiveRecord::Base
               lambda { |task|
                 { :conditions => ['time_blocks.task_id=?', task.to_param] }
               }
+  named_scope :for_project,
+              lambda { |project|
+                {
+                  :include    => [:task],
+                  :conditions => ['tasks.project_id=?', project.to_param]
+                }
+              }
   named_scope :for_client,
               lambda { |client|
                 {
-                  :include    => [:task],
-                  :conditions => ['tasks.client_id=?', client_id.to_param]
+                  :include    => {:task => :project},
+                  :conditions => ['projects.client_id=?', client.to_param]
                 }
               }
   #
