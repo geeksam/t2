@@ -53,6 +53,17 @@ class Task < ActiveRecord::Base
   def project_name
     project.try(:name)
   end
+  def truncated_name(max_length = 25)
+    if name.length > max_length
+      name[0, max_length-3] + '...'
+    else
+      name
+    end
+  end
+  def method_missing(meth, *args, &blk)
+    return super unless meth.to_s =~ /^name_truncated_to_(\d+)$/
+    truncated_name($1.to_i)
+  end
 
   def display_name
     returning "" do |s|

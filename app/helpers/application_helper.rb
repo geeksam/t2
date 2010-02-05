@@ -47,4 +47,18 @@ module ApplicationHelper
     s
   end
 
+  def active_task_options(options = {})
+    collection = Project.with_active_tasks.all(:include => [:tasks] )
+    truncated_to = options[:truncated_to]
+    option_value_method = truncated_to.blank? ? :name : :"name_truncated_to_#{truncated_to}"
+    selected_key = options[:selected] || Task.find_current.try(:id)
+
+    option_groups_from_collection_for_select(
+      collection,
+      :active_tasks, :name,
+      :id, option_value_method,
+      selected_key
+    )
+  end
+
 end

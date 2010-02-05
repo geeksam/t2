@@ -42,18 +42,4 @@
     = time_summary 'Three PPs ago',   @time_summaries[:last_pp_but_2]
 
   - panel 'todays_time_blocks' do
-    %h2 Today's Time Blocks
-    %table
-      %tr
-        %th Hrs
-        %th Start
-        %th End
-        %th Proj
-        %th Task
-      - TimeBlock.today.each do |tb|
-        %tr
-          %td{ :align => 'right' }=link_to(elapsed(tb.elapsed_time), edit_time_block_path(tb))
-          %td=tb.start_time.try(:strftime, '%H:%M')
-          %td=tb.end_time  .try(:strftime, '%H:%M')
-          %td=tb.proj_name
-          %td=truncate(tb.task_name, 25)
+    = render :partial => 'todays_time_blocks_show', :locals => { :tbs => @todays_tbs }

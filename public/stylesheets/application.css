@@ -229,3 +229,7 @@ table.report th {
 table.report td ul {
   margin: 0;
 }
+
+.danger {
+  color: red;
+}

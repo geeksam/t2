@@ -8,7 +8,7 @@
 
   %div
     %label Task
-    = f.select :task_id, Task.active.sort_by_name.map {|t| [t.display_name, t.id]}
+    = f.select :task_id, active_task_options
 
   %div
     %label Notes

@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   
   belongs_to :client
   has_many :tasks
+  has_many :active_tasks, :class_name => 'Task', :conditions => { :active => true }
   has_many :time_blocks, :through => :tasks, :order => 'date desc, start_time desc, end_time desc'
 
   default_scope :order => 'projects.name'
@@ -47,5 +48,5 @@ class Project < ActiveRecord::Base
   def short_name
     read_attribute(:short_name) || read_attribute(:name)
   end
-  
+
 end

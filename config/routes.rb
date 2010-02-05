@@ -17,11 +17,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.clock_out 'clock_out', :controller => 'tasks', :action => 'clock_out', :method => :post
 
-
   # Dashboard actions
   map.with_options(:controller => 'dashboard') do |dash|
     dash.dashboard    'dashboard'
     dash.hours_by_day 'hours_by_day', :action => 'hours_by_day'
+
+    # Don't bother naming the rest of them...
+    dash.connect '/dashboard/:action'
   end
 
 
