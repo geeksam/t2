@@ -5,15 +5,16 @@
     %tr
       %th Ticket&nbsp;#
       %th Elapsed
+      %th Project
       %th Task
     - tbs.group_by(&:task).each do |task, tbs|
       %tr
         %td=dash_if_blank task.ticket_no
         %td=elapsed(tbs.sum(&:elapsed_time))
+        %td=task.project_name
         %td
           =task.name
           - unless (notes = tbs.map(&:notes).reject(&:blank?)).empty?
             %ul
               - notes.each do |note|
                 %li=note
-
