@@ -17,13 +17,14 @@
           - tasks.each do |task|
             %li
               = link_to(task.name, task, :class => 'subtle')
-              = ' &nbsp;'
+              &nbsp;
               = bracket_link link_to('edit', edit_task_path(task))
               - with_options(:method => :post) do |post|
                 - if task.present? && task.is_current?
                   = bracket_link post.link_to('Clock out', clock_out_path), 'clock_out'
                 - else
                   = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
+          %li=link_to('New Task', new_project_task_path(project))
 
 
 /*********************************************************************************************/
@@ -44,10 +45,10 @@
     %h2 Today's Time Blocks
     %table
       %tr
-        %th
+        %th Hrs
         %th Start
         %th End
-        %th Proj.
+        %th Proj
         %th Task
       - TimeBlock.today.each do |tb|
         %tr

@@ -12,8 +12,8 @@ module ApplicationHelper
   end
 
   def short_time(time_value)
-    return Dash if time_value.blank?
-    time_value.strftime("%I:%M %p").gsub(/^0/, '')
+    return if time_value.blank?
+    time_value.strftime("%H:%M").gsub(/^0/, '')
   end
 
   def show_field(label, contents)
