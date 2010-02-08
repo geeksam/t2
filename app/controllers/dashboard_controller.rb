@@ -24,12 +24,17 @@ class DashboardController < ApplicationController
 
 
   ##### Time block management
-
   def show_todays_tbs  # AJAX only, obviously
     render(:update) do |page|
+      # Note that this is destructive of edits made in the "Currently Working On" panel.
+      page.replace_html 'current_tb',
+                        :partial => 'current_tb',
+                        :locals  => { :object => TimeBlock.current.first }
+      page.visual_effect :highlight, 'current_tb'
       page.replace_html 'todays_time_blocks',
                         :partial => 'todays_time_blocks_show',
                         :locals  => { :tbs => TimeBlock.today.all }
+      page.visual_effect :highlight, 'todays_time_blocks'
     end
   end
   def edit_todays_tbs  # AJAX only, obviously

@@ -1,9 +1,10 @@
 - panel 'currently_working_on' do
   %h2 Currently Working On
-  - if @current_tb.blank?
-    Nothing at the moment...
-  - else
-    = render :partial => 'current_tb', :object => @current_tb
+  #current_tb
+    - if @current_tb.blank?
+      Nothing at the moment...
+    - else
+      = render :partial => 'current_tb', :object => @current_tb
 
 - panel 'active_tasks' do
   %h2 Active Tasks
