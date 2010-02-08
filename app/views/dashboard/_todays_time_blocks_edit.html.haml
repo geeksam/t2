@@ -1,5 +1,5 @@
 %div{ :style => 'float: right; text-align: right;' }
-  = bracket_link link_to_remote('cancel', :url => {:controller => 'dashboard', :action => 'show_todays_tbs'})
+  = bracket_link link_to_remote('cancel', :url => {:controller => 'dashboard', :action => 'cancel_editing_todays_tbs'})
   %br
   = bracket_link link_to_remote('reset',  :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
     

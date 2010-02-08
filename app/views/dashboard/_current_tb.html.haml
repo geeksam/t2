@@ -1,18 +1,22 @@
-- form_for(current_tb) do |f|
-  = hidden_field_tag :redirect_on_success, '/'
+%h2 Currently Working On
+- if current_tb.blank?
+  Nothing at the moment...
+- else
+  - form_for(current_tb) do |f|
+    = hidden_field_tag :redirect_on_success, '/'
 
-  %div
-    %label Start
-    = f.text_field :start_time
-    %span.elapsed= "(Elapsed: #{elapsed(current_tb.elapsed_time)})"
+    %div
+      %label Start
+      = f.text_field :start_time
+      %span.elapsed= "(Elapsed: #{elapsed(current_tb.elapsed_time)})"
 
-  %div
-    %label Task
-    = f.select :task_id, active_task_options
+    %div
+      %label Task
+      = f.select :task_id, active_task_options
 
-  %div
-    %label Notes
-    = f.text_area :notes, :size => '50x3'
-  
-  %div
-    = submit_tag 'Update'
+    %div
+      %label Notes
+      = f.text_area :notes, :size => '50x3'
+
+    %div
+      = submit_tag 'Update'

@@ -23,27 +23,17 @@ class DashboardController < ApplicationController
   end
 
 
-  ##### Time block management
-  def show_todays_tbs  # AJAX only, obviously
-    render(:update) do |page|
-      # Note that this is destructive of edits made in the "Currently Working On" panel.
-      page.replace_html 'current_tb',
-                        :partial => 'current_tb',
-                        :locals  => { :object => TimeBlock.current.first }
-      page.visual_effect :highlight, 'current_tb'
-      page.replace_html 'todays_time_blocks',
-                        :partial => 'todays_time_blocks_show',
-                        :locals  => { :tbs => TimeBlock.today.all }
-      page.visual_effect :highlight, 'todays_time_blocks'
-    end
+  ##### Time block management: these are AJAX only, and use methods from DashboardHelper
+  def edit_todays_tbs
+    render(:update) { |page| display_edit_ttbs_form(page) }
   end
-  def edit_todays_tbs  # AJAX only, obviously
-    render(:update) do |page|
-      page.replace_html 'todays_time_blocks',
-                        :partial => 'todays_time_blocks_edit',
-                        :locals  => { :tbs => TimeBlock.today.all }
-    end
+  def cancel_editing_todays_tbs
+    render(:update) { |page| display_show_ttbs_form(page) }
   end
+  def show_todays_tbs
+    render(:update) { |page| display_show_ttbs_form(page); update_currently_working_on(page) }
+  end
+
 
   def update_tbs
     redirect_to dashboard_url and return unless request.post?
