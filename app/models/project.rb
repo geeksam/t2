@@ -14,9 +14,15 @@
 class Project < ActiveRecord::Base
   
   belongs_to :client
-  has_many :tasks
-  has_many :active_tasks, :class_name => 'Task', :conditions => { :active => true }
-  has_many :time_blocks, :through => :tasks, :order => 'date desc, start_time desc, end_time desc'
+  has_many  :tasks,
+            :order => 'tasks.name'
+  has_many  :active_tasks,
+            :class_name => 'Task',
+            :conditions => { :active => true },
+            :order      => 'tasks.name'
+  has_many  :time_blocks,
+            :through => :tasks,
+            :order   => 'date desc, start_time desc, end_time desc'
 
   default_scope :order => 'projects.name'
   
@@ -32,14 +38,6 @@ class Project < ActiveRecord::Base
                 { :conditions => ['projects.client_id=?', client.to_param] }
               }
   #
-
-  # def active_tasks
-  #   tasks.select(&:active?).sort_by { |e| e.name.downcase }
-  # end
-
-  # def tasks_most_recent_first
-  #   tasks.sort_by {|e| e.time_blocks.first }.reverse
-  # end
 
   def client_name
     client.try(:name)
