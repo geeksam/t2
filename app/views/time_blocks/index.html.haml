@@ -1,0 +1,28 @@
+%h1 Listing time blocks
+
+%table
+  - last_day = nil
+  - @time_blocks.each do |time_block|
+    - if time_block.date != last_day
+      %tr
+        %th{:colspan => '10', :style => 'text-align: left;'}
+          %br
+          = last_day = time_block.date
+      %tr
+        %th{ :style => 'text-align: left; padding-right: 1em;' } Start
+        %th{ :style => 'text-align: left; padding-right: 1em;' } End
+        %th{ :style => 'text-align: left; padding-right: 1em;' } Elapsed
+        %th{ :style => 'text-align: left; padding-right: 1em;' } Project
+        %th{ :style => 'text-align: left; padding-right: 1em;' } Task
+        %th{ :style => 'text-align: left; padding-right: 1em;' } Notes
+    %tr
+      %td{ :align => 'right', :style => 'padding-right: 1em;' }= short_time(time_block.start_time).to_s + '&nbsp;'
+      %td{ :align => 'right', :style => 'padding-right: 1em;' }= short_time(time_block.end_time  ).to_s + '&nbsp;'
+      %td= link_to elapsed(time_block.elapsed_time), time_block
+      %td= link_to time_block.project_name, time_block.task.try(:project)
+      %td= link_to time_block.task_name, time_block.task
+      %td= h time_block.notes
+
+%br
+
+= link_to 'New time block', new_time_block_path
