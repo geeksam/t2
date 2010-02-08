@@ -1,0 +1,23 @@
+%div
+  %label{ :for => 'task_project_id' } Project
+  = f.select :project_id, Project.active.map { |e| [e.name, e.id] }, :selected => @project.try(:id)
+
+%div
+  %label{ :for => 'task_name' } Name
+  = f.text_field :name
+
+%div
+  %label{ :for => 'task_ticket_no' } Ticket #
+  = f.text_field :ticket_no
+
+%div
+  %label{ :for => 'task_active' } Active
+  = f.check_box :active
+
+%div
+  %label{ :for => 'task_recurring' } Recurring
+  = f.check_box :recurring
+
+%div
+  %label{ :for => 'task_notes' } Notes
+  = f.text_area :notes, :size => '80x5'

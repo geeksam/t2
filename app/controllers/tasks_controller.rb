@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_filter :look_for_project
 
   def clock_in
     Task.find(params[:id]).try :clock_in!
@@ -102,5 +103,11 @@ class TasksController < ApplicationController
       format.html { redirect_to(tasks_url) }
       format.xml  { head :ok }
     end
+  end
+
+
+  protected
+  def look_for_project
+    @project = Project.find(params[:project_id]) if params[:project_id].present?
   end
 end

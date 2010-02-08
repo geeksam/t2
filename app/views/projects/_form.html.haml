@@ -1,6 +1,6 @@
 %div
   %label{ :for => 'project_client_id' } Client
-  = f.select :client_id, Client.active.map { |e| [e.name, e.id] }
+  = f.select :client_id, Client.active.map { |e| [e.name, e.id] }, :selected => @client.try(:id)
 
 %div
   %label{ :for => 'project_name' } Name

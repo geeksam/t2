@@ -1,9 +1,11 @@
 class ProjectsController < ApplicationController
+  before_filter :look_for_client
+
   # GET /projects
   # GET /projects.xml
   def index
     finder = Project
-    finder = finder.for_client(params[:client_id]) if params[:client_id].present?
+    finder = finder.for_client(@client.id) if @client.present?
     @projects = finder.all
 
     respond_to do |format|
@@ -84,4 +86,12 @@ class ProjectsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+
+  protected
+  def look_for_client
+    @client = Client.find(params[:client_id]) if params[:client_id].present?
+  end
+
 end
