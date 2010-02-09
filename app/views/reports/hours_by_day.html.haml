@@ -1,5 +1,5 @@
 %table{ :cellspacing => 0, :class => 'report' }
-  - @time_blocks.group_by(&:date).each do |day, tbs|
+  - @days_and_tbs.each do |day, tbs|
     %tr
       %th{ :colspan => 10, :align => 'left', :class => 'section' }
         = day

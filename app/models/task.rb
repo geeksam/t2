@@ -28,6 +28,8 @@ class Task < ActiveRecord::Base
               lambda { |project|
                 { :conditions => ['tasks.project_id=?', project.to_param] }
               }
+  named_scope :empty,
+              :conditions => ['(SELECT COUNT(*) FROM time_blocks WHERE task_id=tasks.id) = 0']
   #
 
   def self.active_list_by_project

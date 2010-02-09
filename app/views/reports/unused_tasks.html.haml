@@ -1,0 +1,12 @@
+%h2 Unused Tasks
+
+- if @empty_tasks.empty?
+  %h3 None!
+- else
+  %ul
+    - @empty_tasks.each do |task|
+      %li
+        - form_tag(task_url(task), :method => :delete) do
+          = '%s: %s' % [task.project_name, task.name]
+          = hidden_field_tag 'redirect_to', unused_tasks_path
+          = submit_tag('Delete')

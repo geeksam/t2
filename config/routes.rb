@@ -19,11 +19,18 @@ ActionController::Routing::Routes.draw do |map|
 
   # Dashboard actions
   map.with_options(:controller => 'dashboard') do |dash|
-    dash.dashboard    'dashboard'
-    dash.hours_by_day 'hours_by_day', :action => 'hours_by_day'
+    dash.dashboard 'dashboard'
 
     # Don't bother naming the rest of them...
     dash.connect '/dashboard/:action'
+  end
+
+  # Report actions -- yes, name them all.
+  map.with_options(:controller => 'reports') do |reports|
+    reports.reports 'reports'  # not as bad as:  http://en.wikipedia.org/wiki/Buffalo_buffalo
+
+    reports.hours_by_day '/reports/hours_by_day', :action => 'hours_by_day'
+    reports.unused_tasks '/reports/unused_tasks', :action => 'unused_tasks'
   end
 
 

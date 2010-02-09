@@ -100,7 +100,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tasks_url) }
+      format.html { redirect_to(params[:redirect_to] || tasks_url) }
       format.xml  { head :ok }
     end
   end
