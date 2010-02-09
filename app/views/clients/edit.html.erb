@@ -1,6 +1,6 @@
 <h1>Editing client</h1>
 
-<% form_for(@client) do |f| %>
+<% labeled_form_for(@client) do |f| %>
   <%= f.error_messages %>
 
   <%= render :partial => 'form', :locals => {:f => f} %>

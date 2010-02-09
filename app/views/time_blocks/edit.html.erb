@@ -1,6 +1,6 @@
 <h1>Editing time_block</h1>
 
-<% form_for(@time_block) do |f| %>
+<% labeled_form_for(@time_block) do |f| %>
   <%= f.error_messages %>
 
   <%= render :partial => 'form', :locals => {:f => f} %>
