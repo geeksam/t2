@@ -1,0 +1,8 @@
+%h1 New client
+
+- labeled_form_for(@client) do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:f => f}
+  %p= f.submit 'Create'
+
+= link_to 'Back', clients_path

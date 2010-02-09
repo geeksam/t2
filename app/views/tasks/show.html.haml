@@ -1,0 +1,15 @@
+%h1 Showing task
+
+= show_field 'Project',   link_to(@task.project_name, @task.project)
+= show_field 'Name',      @task.name
+= show_field 'Ticket #',  dash_if_blank(@task.ticket_no)
+= show_field 'Active',    yesno(@task.active)
+= show_field 'Recurring', yesno(@task.recurring)
+= show_field 'Notes',     dash_if_blank(@task.notes)
+
+%br
+= separated_group do |g|
+  - g << link_to('All Tasks', tasks_path)
+  - g << link_to('Edit', edit_task_path(@task))
+  - g << link_to('Related Time Blocks', task_time_blocks_path(@task))
+  - g << link_to('New Task', new_task_time_block_path(@task))

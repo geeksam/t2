@@ -1,0 +1,11 @@
+%h1 Showing client
+
+= show_field 'Name',   @client.name
+= show_field 'Active', yesno(@client.active)
+
+%br
+= separated_group do |g|
+  - g << link_to('All Clients', clients_path)
+  - g << link_to('Edit', edit_client_path(@client))
+  - g << link_to('Related Projects', client_projects_path(@client))
+  - g << link_to('New Project', new_client_project_path(@client))

@@ -1,0 +1,11 @@
+%h1 Editing client
+
+- labeled_form_for(@client) do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:f => f}
+  %p= f.submit 'Update'
+
+%br
+= separated_group do |g|
+  - g << link_to('Show', @client)
+  - g << link_to('Back', clients_path)
