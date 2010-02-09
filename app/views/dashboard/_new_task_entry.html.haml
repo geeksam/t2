@@ -1,0 +1,19 @@
+- expandable("new_tasks_form", :float_link => 'right', :collapsed => true) do |exp|
+  %h2 New Task Entry
+  - exp.less {}
+  - exp.more do
+    - form_tag(:action => 'new_tasks') do
+      %table
+        %tr
+          %th Project
+          %th Task name
+          %th Clock in?
+        - 5.times do
+          %tr
+            %td= select_tag       'new_tasks[][project_id]', |
+                                  options_from_collection_for_select(Project.active, :id, :name) |
+            %td= text_field_tag   'new_tasks[][name]'
+            %td= radio_button_tag 'new_tasks[][clock_in]', '1'
+        %tr#add_row_row
+          %td{ :colspan => 10 }
+            = submit_tag 'Create tasks'

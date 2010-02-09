@@ -65,6 +65,18 @@ class DashboardController < ApplicationController
     end
   end
 
+  def new_tasks
+    params[:new_tasks].each do |attrs|
+      next unless attrs[:name].present?
+      if attrs[:clock_in].present?
+        clock_in = !!attrs.delete(:clock_in)
+      end
+      t = Task.create(attrs)
+      t.clock_in! if clock_in
+    end
+    redirect_to dashboard_url
+  end
+
 
   ##### Reporting
 
