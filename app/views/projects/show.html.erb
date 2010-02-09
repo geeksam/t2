@@ -6,7 +6,9 @@
 <%= show_field 'Active',      yesno(@project.active) %>
 
 <br />
-<%= link_to 'All Projects', projects_path %> |
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Related Tasks', project_tasks_path(@project) %> |
-<%= link_to 'New Task', new_project_task_path(@project) %>
+<%= separated_group do |g|
+  g << link_to('All Projects', projects_path)
+  g << link_to('Edit', edit_project_path(@project))
+  g << link_to('Related Tasks', project_tasks_path(@project))
+  g << link_to('New Task', new_project_task_path(@project))
+end %>

@@ -8,7 +8,9 @@
 <%= show_field 'Notes',     dash_if_blank(@task.notes) %>
 
 <br />
-<%= link_to 'All Tasks', tasks_path %> |
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Related Time Blocks', task_time_blocks_path(@task) %> |
-<%= link_to 'New Task', new_task_time_block_path(@task) %>
+<%= separated_group do |g|
+  g << link_to('All Tasks', tasks_path)
+  g << link_to('Edit', edit_task_path(@task))
+  g << link_to('Related Time Blocks', task_time_blocks_path(@task))
+  g << link_to('New Task', new_task_time_block_path(@task))
+end %>

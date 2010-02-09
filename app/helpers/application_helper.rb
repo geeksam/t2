@@ -61,4 +61,27 @@ module ApplicationHelper
     )
   end
 
+
+  # Leaving those '|' characters dangling at the end of a line was getting
+  # annoying.  This encapsulates the micropattern of putting several text
+  # items (links or otherwise) together, with an arbitrary separator between them.
+  def separated_group(separator = ' | ', &proc)
+    SeparatedGroupBuilder.new(separator, &proc).to_s
+  end
+  class SeparatedGroupBuilder
+    def initialize(separator = ' | ', &proc)
+      @separator = separator
+      @items = []
+      yield self
+    end
+
+    def <<(item)
+      @items << item
+    end
+
+    def to_s
+      @items.join(@separator)
+    end
+  end
+
 end

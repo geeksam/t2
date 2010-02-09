@@ -10,5 +10,7 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+<%= separated_group do |g|
+  g << link_to('Show', @task)
+  g << link_to('Back', tasks_path)
+end %>

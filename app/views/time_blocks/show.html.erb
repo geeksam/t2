@@ -6,6 +6,7 @@
 <%= show_field 'Notes',       dash_if_blank(@time_block.notes) %>
 
 <br />
-<%= link_to 'Edit', edit_time_block_path(@time_block) %> |
-<%= link_to 'Destroy', @time_block, :method => :delete, :confirm => 'Are you sure?' %> |
-<%= link_to 'Back', time_blocks_path %>
+<%= separated_group do |g|
+  g << link_to('Edit', edit_time_block_path(@time_block))
+  g << link_to('Back', time_blocks_path)
+end %>

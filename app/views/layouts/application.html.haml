@@ -11,27 +11,25 @@
         #app_title= link_to 'Timr 2', '/'
         #user_nav
           #current_user_info
-            - if current_user
-              You are logged in as: #{logged_in_as}
-              |
-              = link_to 'Log Out', logout_path
-            - else
-              = link_to 'Log In', login_path
+            = separated_group do |g|
+              - if current_user
+                - g << "You are logged in as: #{logged_in_as}"
+                - g <<  link_to('Log Out', logout_path)
+              - else
+                - g << link_to('Log In', login_path)
           #nav_links
             - if current_user
               %strong Resources:
-              - links = []
-              - links << link_to('Clients',     clients_path    )
-              - links << link_to('Projects',    projects_path   )
-              - links << link_to('Tasks',       tasks_path      )
-              - links << link_to('Time Blocks', time_blocks_path)
-              = links.join(' | ')
+              = separated_group do |g|
+                - g << link_to('Clients',     clients_path    )
+                - g << link_to('Projects',    projects_path   )
+                - g << link_to('Tasks',       tasks_path      )
+                - g << link_to('Time Blocks', time_blocks_path)
               %br
               %strong Reports:
-              - links = []
-              - links << link_to('Hours by Day', hours_by_day_path)
-              - links << link_to('Unused Tasks', unused_tasks_path)
-              = links.join(' | ')
+              = separated_group do |g|
+                - g << link_to('Hours by Day', hours_by_day_path)
+                - g << link_to('Unused Tasks', unused_tasks_path)
         .clear
       
       - flash.each do |name, msg|

@@ -10,5 +10,8 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+<br />
+<%= separated_group do |g|
+  g << link_to('Show', @client)
+  g << link_to('Back', clients_path)
+end %>
