@@ -35,7 +35,7 @@ class Task < ActiveRecord::Base
   end
 
   def self.current_tb
-    TimeBlock.current.first
+    TimeBlock.current
   end
   def current_tb
     self.class.current_tb

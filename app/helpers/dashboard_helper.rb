@@ -3,7 +3,7 @@ module DashboardHelper
     # Note that this is destructive of edits made in the "Currently Working On" panel.
     page.replace_html 'currently_working_on',
                       :partial => 'current_tb',
-                      :locals  => { :object => TimeBlock.current.first }
+                      :locals  => { :object => TimeBlock.current }
     page.visual_effect :highlight, 'currently_working_on'
   end
   def display_edit_ttbs_form(page)

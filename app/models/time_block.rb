@@ -38,7 +38,7 @@ class TimeBlock < ActiveRecord::Base
               }
   named_scope :today,
               :conditions => ['time_blocks.date=?', Date.today]
-  named_scope :current,
+  named_scope :is_current,
               :conditions => ['end_time IS NULL']
   named_scope :for_task,
               lambda { |task|
@@ -59,6 +59,9 @@ class TimeBlock < ActiveRecord::Base
                 }
               }
   #
+  def self.current
+    is_current.first
+  end
 
   before_create :default_to_now
   def default_to_now
