@@ -230,6 +230,11 @@ table.report td ul {
   margin: 0;
 }
 
+a.current_task {
+  color: #4D9A4C;
+  font-weight: bold;
+}
+
 .danger {
   color: red;
 }

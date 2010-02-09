@@ -1,5 +1,5 @@
 - panel 'currently_working_on' do
-  = render :partial => 'current_tb', :object => @current_tb
+  = render :partial => 'currently_working_on', :locals => { :current_tb => @current_tb }
 
 - panel 'active_tasks' do
   = render :partial => 'active_tasks', :locals => { :current_task => @current_task }
