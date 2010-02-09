@@ -2,7 +2,7 @@
 - if current_tb.blank?
   Nothing at the moment...
 - else
-  - form_for(current_tb) do |f|
+  - remote_form_for(current_tb, :url => url_for(:controller => 'dashboard', :action => 'update_cwo')) do |f|
     = hidden_field_tag :redirect_on_success, '/'
 
     %div

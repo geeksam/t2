@@ -34,7 +34,6 @@ class DashboardController < ApplicationController
     render(:update) { |page| display_show_ttbs_form(page); update_currently_working_on(page) }
   end
 
-
   def update_tbs
     redirect_to dashboard_url and return unless request.post?
 
@@ -52,6 +51,17 @@ class DashboardController < ApplicationController
     respond_to do |wants|
       wants.html { redirect_to dashboard_path }
       wants.js { show_todays_tbs }
+    end
+  end
+
+  def update_cwo
+    tb = TimeBlock.current
+    attrs = params[:time_block]
+    attrs[:start_time] = Chronic.parse(attrs[:start_time])
+    tb.update_attributes(attrs)
+    respond_to do |format|
+      format.html { redirect_to dashboard_url }
+      format.js   { render(:update) { |page| update_currently_working_on(page) }   }
     end
   end
 
