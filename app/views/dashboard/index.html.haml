@@ -2,40 +2,15 @@
   = render :partial => 'current_tb', :object => @current_tb
 
 - panel 'active_tasks' do
-  %h2 Active Tasks
-  - Task.active_list_by_project.each do |project, tasks|
-    - is_current = tasks.include?(@current_task)
-    - expandable("project_#{project.id}", :float_link => 'right', :collapsed => !is_current) do |exp|
-      %h3=link_to(project.name, project, :class => 'subtle')
-      - exp.less {}
-      - exp.more do
-        %ul.tasks
-          - tasks.each do |task|
-            %li
-              = link_to(task.name, task, :class => 'subtle')
-              &nbsp;
-              = bracket_link link_to('edit', edit_task_path(task))
-              - with_options(:method => :post) do |post|
-                - if task.present? && task.is_current?
-                  = bracket_link post.link_to('Clock out', clock_out_path), 'clock_out'
-                - else
-                  = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
-          %li=link_to('New Task', new_project_task_path(project))
+  = render :partial => 'active_tasks', :locals => { :current_task => @current_task }
 
-
-/*********************************************************************************************/
 
 
 - content_for :sidebar do
-  - panel 'time_summary' do
-    %h2= 'Hours Today: ' + elapsed(@time_summaries[:today].last)
-    - if false && @client
-      %h2== ONLY FOR: #{@client.name}
-    = time_summary 'This week',       @time_summaries[:this_week]
-    = time_summary 'This pay period', @time_summaries[:this_pp]
-    = time_summary 'Last pay period', @time_summaries[:last_pp]
-    = time_summary 'Two PPs ago',     @time_summaries[:last_pp_but_1]
-    = time_summary 'Three PPs ago',   @time_summaries[:last_pp_but_2]
+  - panel 'time_summaries' do
+    = render  :partial => 'time_summaries',      |
+              :object  => @time_summaries,       |
+              :locals  => { :client => @client } |
 
   - panel 'todays_time_blocks' do
     = render :partial => 'todays_time_blocks_show', :locals => { :tbs => @todays_tbs }

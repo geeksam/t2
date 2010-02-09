@@ -1,0 +1,19 @@
+%h2 Active Tasks
+- Task.active_list_by_project.each do |project, tasks|
+  - is_current = tasks.include?(current_task)
+  - expandable("project_#{project.id}", :float_link => 'right', :collapsed => !is_current) do |exp|
+    %h3=link_to(project.name, project, :class => 'subtle')
+    - exp.less {}
+    - exp.more do
+      %ul.tasks
+        - tasks.each do |task|
+          %li
+            = link_to(task.name, task, :class => 'subtle')
+            &nbsp;
+            = bracket_link link_to('edit', edit_task_path(task))
+            - with_options(:method => :post) do |post|
+              - if task.present? && task.is_current?
+                = bracket_link post.link_to('Clock out', clock_out_path), 'clock_out'
+              - else
+                = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
+        %li=link_to('New Task', new_project_task_path(project))
