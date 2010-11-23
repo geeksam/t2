@@ -3,7 +3,7 @@
   %br
   = bracket_link link_to_remote('reset',  :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
     
-- form_remote_tag(:url => { :controller => 'dashboard', :action => 'update_tbs' }) do
+- form_tag(:controller => 'dashboard', :action => 'update_tbs') do
   %h2 Today's Time Blocks
   %table
     %tr
