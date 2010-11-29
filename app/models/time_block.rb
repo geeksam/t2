@@ -28,7 +28,7 @@ class TimeBlock < ActiveRecord::Base
               lambda { |date|
                 { :conditions => ['time_blocks.date BETWEEN ? AND ?', date.beginning_of_week, date.end_of_week] }
               }
-  named_scope :for_pay_period,
+  named_scope :for_date_range,
               lambda { |pp|
                 { :conditions => ['time_blocks.date BETWEEN ? AND ?'] + pp.boundaries }
               }

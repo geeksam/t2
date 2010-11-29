@@ -26,7 +26,7 @@ module ApplicationHelper
 
   def time_summary(label, pair)
     period, value = *pair
-    label = period.to_s if period.kind_of?(PayPeriod)
+    label = period.to_s    if period.kind_of?(TimePeriod)
     value = elapsed(value) if value.kind_of?(Numeric)
     contents = '<span class="label">%s: <span class="value">%s</span>' % [label, value]
     content_tag(:div, contents, :class => 'time_summary')

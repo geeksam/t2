@@ -12,13 +12,16 @@ class DashboardController < ApplicationController
       sum    = (TimeBlock.send(finder, *args).all || []).sum(&:elapsed_time)
       [period, sum]
     }
+    weeks = [Week.for_date(Date.today)]
+    (1..3).each do |i|
+      weeks << weeks.last.prev
+    end
     @time_summaries = {
-      :today         => sum_time[:for_day,        Date.today],
-      :this_week     => sum_time[:for_week,       Date.today],
-      :this_pp       => sum_time[:for_pay_period, PayPeriod.current],
-      :last_pp       => sum_time[:for_pay_period, PayPeriod.last_but(0)],
-      :last_pp_but_1 => sum_time[:for_pay_period, PayPeriod.last_but(1)],
-      :last_pp_but_2 => sum_time[:for_pay_period, PayPeriod.last_but(2)],
+      :today  => sum_time[:for_day,        Date.today],
+      :last_0 => sum_time[:for_date_range, weeks[0]],
+      :last_1 => sum_time[:for_date_range, weeks[1]],
+      :last_2 => sum_time[:for_date_range, weeks[2]],
+      :last_3 => sum_time[:for_date_range, weeks[3]],
     }
   end
 
