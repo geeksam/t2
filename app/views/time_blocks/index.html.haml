@@ -4,10 +4,12 @@
   - last_day = nil
   - @time_blocks.each do |time_block|
     - if time_block.date != last_day
+      - last_day      = time_block.date
+      - hours_for_day = @time_blocks.select { |e| e.date == time_block.date }.map(&:elapsed_time).sum
       %tr
         %th{:colspan => '10', :style => 'text-align: left;'}
           %br
-          = last_day = time_block.date
+          = '%s: %s hrs' % [last_day, elapsed(hours_for_day)]
       %tr
         %th{ :style => 'text-align: left; padding-right: 1em;' } Start
         %th{ :style => 'text-align: left; padding-right: 1em;' } End
