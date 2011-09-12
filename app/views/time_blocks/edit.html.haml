@@ -5,6 +5,8 @@
   = render :partial => 'form', :locals => {:f => f}
   %p= f.submit 'Update'
 
+= button_to('Destroy', 'destroy')
+
 = separated_group do |g|
   - g << link_to('Show', @time_block)
   - g << link_to('Back', time_blocks_path)

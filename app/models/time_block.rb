@@ -85,6 +85,7 @@ class TimeBlock < ActiveRecord::Base
   end
 
   def elapsed_time
+    return 0 if start_time.nil?
     seconds = end_time_or_now - start_time
     if seconds > 10.hours # hours, that is
       raise ['end time -->', end_time_or_now.to_s, 'start time -->', start_time.to_s].inspect
