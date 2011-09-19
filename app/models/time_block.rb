@@ -16,7 +16,7 @@ class TimeBlock < ActiveRecord::Base
 
   belongs_to :task
 
-  default_scope :order => 'date desc, start_time desc, end_time desc'
+  default_scope :order => 'date desc, start_time asc, end_time asc'
 
   validates_presence_of :task
 
