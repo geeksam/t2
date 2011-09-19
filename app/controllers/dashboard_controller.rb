@@ -60,7 +60,7 @@ class DashboardController < ApplicationController
   def update_cwo
     tb = TimeBlock.current
     attrs = params[:time_block]
-    attrs[:start_time] = Chronic.parse(attrs[:start_time])
+    attrs[:ui_start_time] = Chronic.parse(attrs[:ui_start_time])
     tb.update_attributes(attrs)
     respond_to do |format|
       format.html { redirect_to dashboard_url }

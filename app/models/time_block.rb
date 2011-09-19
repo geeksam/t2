@@ -119,10 +119,25 @@ class TimeBlock < ActiveRecord::Base
     write_attribute :end_time, reparse_time(time)
   end
 
+  # UI-friendly fields (these should, hopefully, round-trip)
+  def ui_start_time
+    start_time.try(:strftime, '%H:%M')
+  end
+  def ui_start_time=(time)
+    write_attribute :start_time, reparse_time(time)
+  end
+  def ui_end_time
+    end_time.try(:strftime, '%H:%M')
+  end
+  def ui_end_time=(time)
+    write_attribute :end_time, reparse_time(time)
+  end
+
   protected
   def reparse_time(time)
-    return if time.blank?
-    TIME_CLASS.parse(time.strftime('%H:%M:%S'))
+    return if time.nil?
+    time_string = time.kind_of?(Time) ? time.strftime('%H:%M:%S') : time
+    TIME_CLASS.parse(time_string)
   end
 
 end
