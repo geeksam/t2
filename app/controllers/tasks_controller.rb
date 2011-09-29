@@ -3,18 +3,12 @@ class TasksController < ApplicationController
 
   def clock_in
     Task.find(params[:id]).try :clock_in!
-    respond_to do |wants|
-      wants.html { redirect_to '/' }
-      wants.js { render(:update) { |page| page.redirect_to('/') } }
-    end
+    redirect_to_root
   end
 
   def clock_out
     Task.find_current.try :clock_out!
-    respond_to do |wants|
-      wants.html { redirect_to '/' }
-      wants.js { render(:update) { |page| page.redirect_to('/') } }
-    end
+    redirect_to_root
   end
 
 
@@ -109,5 +103,12 @@ class TasksController < ApplicationController
   protected
   def look_for_project
     @project = Project.find(params[:project_id]) if params[:project_id].present?
+  end
+
+  def redirect_to_root
+    respond_to do |wants|
+      wants.html { redirect_to '/' }
+      wants.js { render(:update) { |page| page.redirect_to('/') } }
+    end
   end
 end

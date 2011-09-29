@@ -1,19 +1,20 @@
 %div{ :style => 'float: right;' }
   = bracket_link link_to_remote('edit', :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
-%h2= 'Today: %.2f' % tbs.sum(&:elapsed_time)
 %table
   %tr
-    %th Hrs
     %th Start
     %th End
-    %th Proj
+    %th
+    %th Hrs
+    %th
     %th Task
     %th Notes
   - tbs.each do |tb|
     %tr
-      %td{ :align => 'right' }=link_to(elapsed(tb.elapsed_time), edit_time_block_path(tb))
       %td=tb.start_time.try(:strftime, '%H:%M')
       %td=tb.end_time  .try(:strftime, '%H:%M')
-      %td=tb.proj_name
-      %td=tb.task_name
+      %td &nbsp;
+      %td=elapsed(tb.elapsed_time)
+      %td &nbsp;
+      %td=[tb.proj_name, tb.task_name].reject(&:blank?).join(' / ')
       %td=tb.notes

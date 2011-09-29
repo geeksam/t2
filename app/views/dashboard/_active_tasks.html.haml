@@ -7,14 +7,9 @@
     - exp.more do
       %ul.tasks
         - tasks.each do |task|
+          - task_class = [task.is_current? ? 'current_task' : nil, 'subtle'].compact.join(' ')
           %li
-            - task_class = [task.is_current? ? 'current_task' : nil, 'subtle'].compact.join(' ')
-            = link_to(task.name, task, :class => task_class)
-            &nbsp;
-            = bracket_link link_to('edit', edit_task_path(task))
             - with_options(:method => :post) do |post|
-              - if task.present? && task.is_current?
-                = bracket_link post.link_to('Clock out', clock_out_path), 'clock_out'
-              - else
-                = bracket_link post.link_to('Clock in',  clock_in_task_path(task)), 'clock_in'
-        %li=link_to('New Task', new_project_task_path(project))
+              = post.link_to(task.name, clock_in_task_path(task), :class => task_class)
+              = bracket_link link_to('edit', edit_task_path(task), :title => 'Edit task')
+              = bracket_link post.link_to('clock out', clock_out_path), 'clock_out' if task.is_current?

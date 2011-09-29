@@ -1,15 +1,26 @@
+/*
+From http://colorschemedesigner.com/ using #4B7399 as primary color and 'analogic' as scheme type:
+  Primary Color:      4B7399  475D73  183F63  7EA6CC  93B0CC
+  Secondary Color A:  5B57A4  52507B  211C6B  8C87D2  9E9BD2
+  Secondary Color B:  479E7F  467765  17674B  79CFB0  90CFB8
+*/
+
 body {
   background-color: #FFF;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
 
+pad-left  { padding-left:  1em; border-left: 1px solid red; }
+pad-right { padding-right: 1em; border-left: 1px solid red; }
+
 a img {
   border: none;
 }
 
 a {
-  color: #0000FF;
+  color: #211c6b;
+  text-decoration: none;
 }
 
 body {
@@ -187,12 +198,18 @@ ul.tasks {
   font-size: 11px;
 }
 
+#active_tasks {
+}
+
 #todays_time_blocks {
-  background-color: #efe;
 }
 
 #todays_time_blocks th {
   text-align: left;
+}
+
+#todays_time_blocks td {
+  padding-right: 1ex;
 }
 
 #todays_time_blocks table {
@@ -203,14 +220,12 @@ ul.tasks {
   font-size: 11px;
 }
 
-.clock_in a {
-/*  color: #4C9A71;*/
-}
-
-.clock_out a {
-  color: #4D9A4C;
+.clock_in a, .clock_out a {
   font-weight: bold;
 }
+
+.clock_in  a { color: #17674b }
+.clock_out a { color: #5b57a4 }
 
 a.subtle {
   color: #000;
@@ -232,7 +247,7 @@ table.report td ul {
 }
 
 a.current_task {
-  color: #4D9A4C;
+  color: #17674b;
   font-weight: bold;
 }
 
