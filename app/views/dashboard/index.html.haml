@@ -1,19 +1,8 @@
-- panel 'currently_working_on' do
-  = render :partial => 'currently_working_on', :locals => { :current_tb => @current_tb }
+- panel 'todays_time_blocks' do
+  = render :partial => 'todays_time_blocks_show', :locals => { :tbs => @todays_tbs }
 
 - panel 'active_tasks' do
   = render :partial => 'active_tasks', :locals => { :current_task => @current_task }
 
 - panel 'new_task_entry' do
   = render :partial => 'new_task_entry'
-
-
-
-- content_for :sidebar do
-  - panel 'time_summaries' do
-    = render  :partial => 'time_summaries',      |
-              :object  => @time_summaries,       |
-              :locals  => { :client => @client } |
-
-  - panel 'todays_time_blocks' do
-    = render :partial => 'todays_time_blocks_show', :locals => { :tbs => @todays_tbs }

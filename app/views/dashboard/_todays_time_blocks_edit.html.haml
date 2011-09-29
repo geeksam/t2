@@ -4,18 +4,20 @@
   = bracket_link link_to_remote('reset',  :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
     
 - form_tag(:controller => 'dashboard', :action => 'update_tbs') do
-  %h2 Today's Time Blocks
+  %h2 Today
   %table
     %tr
       %th{ :class => 'danger' } rm
       %th Start
       %th End
       %th Task
+      %th Notes
     - tbs.each do |tb|
       %tr
-        %td=check_box_tag  "time_blocks[#{tb.id}][delete]", '1', false, :title => 'Delete this time block?'
-        %td=text_field_tag "time_blocks[#{tb.id}][start_time]", tb.start_time.try(:strftime, '%H:%M'), :size => 4
-        %td=text_field_tag "time_blocks[#{tb.id}][end_time]",   tb.end_time  .try(:strftime, '%H:%M'), :size => 4
-        %td=select_tag     "time_blocks[#{tb.id}][task_id]", active_task_options(:selected => tb.task_id, :truncated_to => 20)
+        %td=check_box_tag  "time_blocks[#{tb.id}][delete]", '1',  false
+        %td=text_field_tag "time_blocks[#{tb.id}][start_time]",   tb.start_time.try(:strftime, '%H:%M'), :size => 4
+        %td=text_field_tag "time_blocks[#{tb.id}][end_time]",     tb.end_time  .try(:strftime, '%H:%M'), :size => 4
+        %td=select_tag     "time_blocks[#{tb.id}][task_id]",      active_task_options(:selected => tb.task_id, :truncated_to => 20)
+        %td=text_field_tag "time_blocks[#{tb.id}][notes]",        tb.notes, :size => 40
     %tr
       %td{ :colspan => 10}= submit_tag('Update', :disable_with => '...')

@@ -1,6 +1,4 @@
-%h2= 'Hours Today: ' + elapsed(time_summaries[:today].last)
-- if false && client
-  %h2== ONLY FOR: #{client.name}
+%h2 Time Summaries
 = time_summary 'This week',       time_summaries[:last_0]
 = time_summary 'Last week',       time_summaries[:last_1]
 = time_summary 'Two weeks ago',   time_summaries[:last_2]

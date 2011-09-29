@@ -115,7 +115,7 @@ td {
 #page_content {
   margin-top: 1ex;
   border: 1px solid #4C4D9A;
-  min-width: 800px;
+/*  min-width: 800px;*/
 }
 
 #current_user_info {
@@ -138,9 +138,6 @@ td {
 
 #main_content {
   padding: 8px;
-  min-width: 565px;
-  width: 67%;
-/*  background-color: #fff;*/
 }
 
 .panel {
@@ -188,6 +185,10 @@ ul.tasks {
 
 .expandable_control_links {
   font-size: 11px;
+}
+
+#todays_time_blocks {
+  background-color: #efe;
 }
 
 #todays_time_blocks th {

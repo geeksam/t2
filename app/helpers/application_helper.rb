@@ -28,6 +28,7 @@ module ApplicationHelper
     period, value = *pair
     label = period.to_s    if period.kind_of?(TimePeriod)
     value = elapsed(value) if value.kind_of?(Numeric)
+    return if Float(value).zero?
     contents = '<span class="label">%s: <span class="value">%s</span>' % [label, value]
     content_tag(:div, contents, :class => 'time_summary')
   end
@@ -43,7 +44,7 @@ module ApplicationHelper
 
   def elapsed(time)
     s = ('%.2f' % time).gsub(/0+$/, '').gsub(/\.$/, '')
-    s = 'zero' if s == '0'
+    # s = '--' if s == '0'
     s
   end
 
