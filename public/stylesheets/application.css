@@ -194,6 +194,10 @@ form div label {
 ul.tasks {
 }
 
+ul.tasks li {
+  line-height: 1.4em;
+}
+
 .expandable_control_links {
   font-size: 11px;
 }
