@@ -94,6 +94,9 @@ class TimeBlock < ActiveRecord::Base
   end
   alias :hours :elapsed_time
 
+  def notes_with_elapsed
+    [notes, elapsed_time]
+  end
 
   def stop_clock!
     self.end_time = TIME_CLASS.now

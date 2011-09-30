@@ -6,18 +6,16 @@
         %br
         = 'Total Hours: ' + elapsed(tbs.sum(&:elapsed_time))
     %tr
-      %th Ticket&nbsp;#
       %th Elapsed
       %th Project
       %th Task
     - tbs.group_by(&:task).each do |task, tbs|
       %tr
-        %td=dash_if_blank task.ticket_no
         %td=elapsed(tbs.sum(&:elapsed_time))
         %td=task.project_name
         %td
           =task.name
-          - unless (notes = tbs.map(&:notes).reject(&:blank?)).empty?
+          - unless (notes = tbs.map(&:notes_with_elapsed).reject{ |e| e.first.blank? }).empty?
             %ul
-              - notes.each do |note|
-                %li=note
+              - notes.each do |note, elapsed|
+                %li='<strong>%.2f</strong> - %s' % [elapsed, note]
