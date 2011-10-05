@@ -1,8 +1,8 @@
 %h2 Active Tasks
 - Task.active_list_by_project.each do |project, tasks|
   - is_current = tasks.include?(current_task)
-  - expandable("project_#{project.id}", :float_link => 'right', :collapsed => !is_current) do |exp|
-    %h3=link_to(project.name, project, :class => 'subtle')
+  - expandable("project_#{project.id}", :float_link => 'left', :collapsed => !is_current) do |exp|
+    %h3=project.name
     - exp.less {}
     - exp.more do
       %ul.tasks

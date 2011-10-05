@@ -222,6 +222,7 @@ ul.tasks li {
 
 .bracket_link {
   font-size: 11px;
+  margin-right: 1em;
 }
 
 .clock_in a, .clock_out a {
