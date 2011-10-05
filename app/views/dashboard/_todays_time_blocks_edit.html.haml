@@ -2,6 +2,8 @@
   = bracket_link link_to_remote('cancel', :url => {:controller => 'dashboard', :action => 'cancel_editing_todays_tbs'})
   %br
   = bracket_link link_to_remote('reset',  :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
+%strong='%s: %.2f' % @time_summaries[:today]
+%br &nbsp;
     
 - form_tag(:controller => 'dashboard', :action => 'update_tbs') do
   %h2 Today

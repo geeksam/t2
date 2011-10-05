@@ -36,6 +36,11 @@ class TimeBlock < ActiveRecord::Base
               lambda { |start_date, end_date|
                 { :conditions => ['time_blocks.date BETWEEN ? AND ?', start_date, end_date] }
               }
+  named_scope :for_most_recent_date,
+              lambda {
+                date = TimeBlock.maximum('date')
+                { :conditions => ['time_blocks.date=?', date] }
+              }
   named_scope :today,
               :conditions => ['time_blocks.date=?', Date.today]
   named_scope :is_current,

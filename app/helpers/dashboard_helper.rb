@@ -20,12 +20,12 @@ module DashboardHelper
   def display_edit_ttbs_form(page)
     update_panel page, 'todays_time_blocks',
       :partial => 'todays_time_blocks_edit',
-      :locals  => { :tbs => TimeBlock.today.all }
+      :locals  => { :tbs => @tbs }
   end
 
   def display_show_ttbs_form(page)
     update_panel page, 'todays_time_blocks',
       :partial => 'todays_time_blocks_show',
-      :locals  => { :tbs => TimeBlock.today.all }
+      :locals  => { :tbs => @tbs }
   end
 end

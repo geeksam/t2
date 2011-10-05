@@ -1,5 +1,7 @@
 %div{ :style => 'float: right;' }
   = bracket_link link_to_remote('edit', :url => {:controller => 'dashboard', :action => 'edit_todays_tbs'})
+%strong='%s: %.2f' % @time_summaries[:today]
+%br &nbsp;
 %table
   %tr
     %th Start
