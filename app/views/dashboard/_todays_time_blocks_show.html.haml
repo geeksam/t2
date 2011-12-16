@@ -19,6 +19,6 @@
       %td &nbsp;
       %td=elapsed(tb.elapsed_time)
       %td &nbsp;
-      %td=link_to('clock in', clock_in_task_path(tb.task), :method => :post)
+      %td=link_to('clock&nbsp;in', clock_in_task_path(tb.task), :method => :post)
       %td=[tb.proj_name, tb.task_name].reject(&:blank?).join(' / ')
       %td=tb.notes
