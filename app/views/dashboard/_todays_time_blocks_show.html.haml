@@ -12,7 +12,12 @@
     %th
     %th Task
     %th Notes
+  - prev_tb = nil
   - tbs.each do |tb|
+    - if prev_tb && prev_tb.end_time != tb.start_time
+      %tr
+        %td{:colspan => 10}
+          %hr
     %tr
       %td=tb.start_time.try(:strftime, '%H:%M')
       %td=tb.end_time  .try(:strftime, '%H:%M')
@@ -22,3 +27,4 @@
       %td=link_to('clock&nbsp;in', clock_in_task_path(tb.task), :method => :post)
       %td=[tb.proj_name, tb.task_name].reject(&:blank?).join(' / ')
       %td=tb.notes
+    - prev_tb = tb
