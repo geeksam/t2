@@ -16,8 +16,13 @@ class ReportsController < ApplicationController
   protected
   def time_block_finder
     # By default, get last ten days
-    a = params[:start_date] || 9.days.ago.to_date # (yes, 9 = 10)
-    b = params[:end_date]   || Date.today
+    if params[:for_date]
+      a, b = params[:for_date], params[:for_date]
+    else
+      num_days = 30
+      a = params[:start_date] || (num_days-1).days.ago.to_date
+      b = params[:end_date]   || Date.today
+    end
 
     finder = TimeBlock
     finder = finder.for_dates(a, b)
