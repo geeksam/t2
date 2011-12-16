@@ -2,7 +2,10 @@
   - @days_and_tbs.each do |day, tbs|
     %tr
       %th{ :colspan => 10, :align => 'left', :class => 'section' }
+        - yst, tmw = (day - 1.day), (day + 1.day)
+        = link_to('&larr;', hours_by_day_path+'?for_date='+yst.to_s)
         = day
+        = link_to('&rarr;', hours_by_day_path+'?for_date='+tmw.to_s)
         %br
         = 'Total Hours: ' + elapsed(tbs.sum(&:elapsed_time))
     %tr
