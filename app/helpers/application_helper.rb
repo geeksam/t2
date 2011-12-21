@@ -48,6 +48,12 @@ module ApplicationHelper
     s
   end
 
+  def elapsed_hours(time)
+    hours =  (time / 1.hour).floor
+    mins  = ((time / 1.hour) - hours) * 1.minute
+    '%d:%02d' % [hours, mins]
+  end
+
   def active_task_options(options = {})
     collection = Project.with_active_tasks.all(:include => [:tasks] )
     truncated_to = options[:truncated_to]

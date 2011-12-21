@@ -7,7 +7,7 @@
     %th Start
     %th End
     %th
-    %th Hrs
+    %th Hours
     %th
     %th
     %th Task
@@ -16,13 +16,15 @@
   - tbs.each do |tb|
     - if prev_tb && prev_tb.end_time != tb.start_time
       %tr
-        %td{:colspan => 10}
-          %hr
+        %td{:colspan => 3}="<hr />"
+        %td=elapsed_hours(tb.start_time - prev_tb.end_time)
+        %td{:colspan => 3}="<hr />"
     %tr
-      %td=tb.start_time.try(:strftime, '%H:%M')
-      %td=tb.end_time  .try(:strftime, '%H:%M')
+      - bold = '<strong>%s</strong>'
+      %td=(bold % tb.start_time.strftime('%H:%M')) if tb.start_time
+      %td=('%s' % tb.end_time  .strftime('%H:%M')) if tb.end_time
       %td &nbsp;
-      %td=elapsed(tb.elapsed_time)
+      %td=bold % elapsed_hours(tb.end_time - tb.start_time) if tb.start_time && tb.end_time
       %td &nbsp;
       %td=link_to('clock&nbsp;in', clock_in_task_path(tb.task), :method => :post)
       %td=[tb.proj_name, tb.task_name].reject(&:blank?).join(' / ')
